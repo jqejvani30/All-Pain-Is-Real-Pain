@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>All Pain Is Real Pain</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@700&display=swap">
+<style>
+/* Layout: one reading column, a bold condensed display for the athletic edge,
+   and calm, high-legibility body text. Sections separated by space, not boxes. */
+/* Single committed look: deep purple ground, white type, white cards as the accents. */
+:root {
+  --bg: #2A1650;
+  --ink: #FFFFFF;
+  --muted: #D6CBEE;
+  --panel: #FFFFFF;
+  --panel-ink: #24123F;
+  --panel-muted: #5B4A7A;
+  --accent: #C9A8FF;
+  --accent-deep: #6A3FC2;
+  --accent-ink: #FFFFFF;
+  --line: #4A3277;
+  --placeholder: #8A5BE0;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px;
+}
+img { max-width: 100%; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.wrap { max-width: 680px; margin: 0 auto; }
+.wrap > * + * { margin-top: 0; }
+
+header.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+nav.top { display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+nav.top a { text-decoration: none; color: var(--muted); }
+nav.top a:hover { color: var(--accent); }
+
+.hero { padding: 56px 0 40px; }
+.eyebrow {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(44px, 9vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.lede { font-size: 20px; color: var(--muted); margin: 0; max-width: 60ch; }
+
+section { padding: 36px 0; border-top: 1px solid var(--line); }
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+p { margin: 0 0 14px; max-width: 65ch; }
+ul, ol { padding-left: 22px; margin: 0; max-width: 65ch; }
+li { margin-bottom: 12px; }
+li strong { display: block; font-weight: 700; }
+.cite { font-size: 14px; color: var(--muted); white-space: nowrap; }
+
+.placeholder {
+  background: var(--panel);
+  border-left: 4px solid var(--placeholder);
+  padding: 16px 18px;
+  border-radius: 4px;
+  color: var(--panel-ink);
+}
+.placeholder p { margin: 0 0 8px; }
+.placeholder .tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--placeholder);
+}
+
+.resource {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+.resource div {
+  background: var(--panel);
+  padding: 16px 18px;
+  border-radius: 4px;
+  min-width: 0;
+  color: var(--panel-ink);
+}
+.resource .note { color: var(--panel-muted); }
+.resource .call { color: var(--accent-deep); }
+.resource strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.call {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.note { font-size: 15px; color: var(--muted); }
+footer { padding: 32px 0 8px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1, .hero .eyebrow, .hero .lede { animation: rise 0.6s ease both; }
+  .hero .eyebrow { animation-delay: 0s; }
+  .hero h1 { animation-delay: 0.08s; }
+  .hero .lede { animation-delay: 0.18s; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (min-width: 560px) {
+  .resource { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="brand">All Pain Is Real Pain</div>
+  <nav class="top" aria-label="On this page">
+    <a href="#facts">Facts</a>
+    <a href="#why">Why</a>
+    <a href="#cope">Coping</a>
+    <a href="#help">Get help</a>
+  </nav>
+</header>
+
+<main>
+<div class="hero">
+  <p class="eyebrow">A guide for student athletes</p>
+  <h1>Getting a physical injury and feeling socially isolated can hurt in similar ways.</h1>
+  <p class="lede">Research suggests the brain handles social rejection with some of the same machinery it uses for physical pain. That helps explain why getting cut, benched, or shut out can feel like an injury. Here is what is known, what you can do, and where to get support.</p>
+</div>
+
+<section id="facts" aria-labelledby="facts-h">
+  <h2 id="facts-h">The basic facts</h2>
+  <p>Feeling socially isolated hurts, literally. So why is it so hard to talk about?</p>
+  <ul>
+    <li><strong>Your brain treats both as pain.</strong> When people are left out, such as in a group game, brain areas that handle physical pain also light up. <span class="cite">(Kross et al., 2011)</span></li>
+    <li><strong>It comes from our need to belong.</strong> Belonging has always been key to survival, so using the same alarm for social and physical threats likely helped humans survive. <span class="cite">(Baumeister &amp; Leary, 1995; Riva et al.)</span></li>
+    <li><strong>Both kinds of pain are valid.</strong> If the same systems respond to both, social pain deserves to be taken as seriously as an injury.</li>
+    <li><strong>Athletes speak up about injuries.</strong> About 90% of student athletes report getting injured while playing. <span class="cite">(Pizzaro et al., 2024)</span></li>
+    <li><strong>They stay quiet about social pain.</strong> Athletes are much less likely to report emotional distress, and more reluctant than the general public to speak up about exclusion. Many fear it could cost them status, playing time, or their spot on the team. <span class="cite">(Petersen et al., 2024)</span></li>
+  </ul>
+</section>
+
+<section id="why" aria-labelledby="why-h">
+  <h2 id="why-h">How the two are produced</h2>
+  <ul>
+    <li><strong>Overlapping brain regions.</strong> In a 2003 study by Eisenberger, Lieberman, and Williams, participants who were left out of a simple ball-tossing game showed activity in the dorsal anterior cingulate cortex. That same region is involved in the distress of physical pain. The study appeared in the journal Science.</li>
+    <li><strong>A shared alarm.</strong> Both kinds of pain signal that something important is at stake. Physical pain flags damage to the body. Social pain flags a threat to belonging, which mattered for survival long before modern teams existed.</li>
+    <li><strong>Why it matters in sport.</strong> A roster cut or a benching can register as a real hit even when nothing is physically wrong. Naming that helps you take it seriously and respond to it.</li>
+    <li><strong>What it does not mean.</strong> Overlapping brain activity does not make the two feelings identical, and the research is still developing.</li>
+  </ul>
+</section>
+
+<section id="cope" aria-labelledby="cope-h">
+  <h2 id="cope-h">Dealing with social rejection</h2>
+  <ol>
+    <li><strong>Name the feeling.</strong> "I feel left out" is easier to work with than a vague heaviness you cannot place.</li>
+    <li><strong>Separate the event from the conclusion.</strong> Being cut is an event. "I don't belong here" is a conclusion you can question with evidence.</li>
+    <li><strong>Look after your body.</strong> Sleep, food, and training routines support emotional regulation, especially during hard stretches.</li>
+    <li><strong>Reach toward one person.</strong> A teammate, roommate, or family member can help. A short, honest message counts.</li>
+    <li><strong>Limit the scroll.</strong> Group chats and social posts can make exclusion feel constant. Muting or stepping away for a while can help.</li>
+  </ol>
+</section>
+
+<section id="help" aria-labelledby="help-h">
+  <h2 id="help-h">Who you can talk to</h2>
+  <ul>
+    <li><strong>Teammates and friends</strong> who have been through something similar.</li>
+    <li><strong>Your coach</strong> for questions about role, playing time, or your future on the team.</li>
+    <li><strong>Athletic trainer</strong>, who sees you often and can point you to the right support.</li>
+    <li><strong>Campus counseling center.</strong> Most schools offer free or low-cost short-term counseling for enrolled students.</li>
+    <li><strong>Team sport psychologist</strong>, if your program has one.</li>
+    <li><strong>Your doctor</strong> if changes in sleep, mood, or appetite last more than a couple of weeks.</li>
+  </ul>
+</section>
+
+<section id="resources" aria-labelledby="res-h">
+  <h2 id="res-h">Resources</h2>
+  <div class="resource">
+    <div>
+      <strong>988 Suicide &amp; Crisis Lifeline</strong>
+      <p class="note">Call or text 988 (US), any time, for anyone who is struggling emotionally.</p>
+      <p class="call">988</p>
+    </div>
+    <div>
+      <strong>Crisis Text Line</strong>
+      <p class="note">Text HOME to 741741 to reach a trained crisis counselor.</p>
+      <p class="call">HOME to 741741</p>
+    </div>
+    <div>
+      <strong>Immediate danger</strong>
+      <p class="note">Call 911 or go to the nearest emergency room.</p>
+      <p class="call">911</p>
+    </div>
+    <div>
+      <strong>Amherst College Counseling Center</strong>
+      <p class="note">Talk to a counselor on campus, or call to set up an appointment.</p>
+      <p class="call">413-542-2354</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p>This site shares general information. It does not replace care from a licensed professional. If you are in danger right now, contact emergency services.</p>
+</footer>
+
+</div>
+</body>
+</html>
